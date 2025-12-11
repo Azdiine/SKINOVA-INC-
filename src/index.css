@@ -108,17 +108,41 @@ body::after {
   flex-shrink: 0;
 }
 
+.logo-brand a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+
 .brand-logo {
   width: 55px;
   height: 55px;
   object-fit: contain;
   border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.05);
 }
 
 .brand-name {
   font-size: 1.8rem;
   font-weight: 700;
   color: #1a1a1a;
+  transition: color 0.3s ease;
+}
+
+.brand-name:hover {
+  color: #A78BFA;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
 .header-nav {
@@ -145,7 +169,6 @@ body::after {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  flex-shrink: 0;
 }
 
 .download-stores {
@@ -158,6 +181,67 @@ body::after {
 
 .download-stores:hover {
   transform: scale(1.05);
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #1a1a1a;
+  transition: color 0.3s ease;
+  z-index: 10001;
+}
+
+.mobile-menu-toggle:hover {
+  color: #A78BFA;
+}
+
+/* Mobile Menu Dropdown */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 1rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+
+.mobile-menu a:hover {
+  background: rgba(167, 139, 250, 0.1);
+  color: #A78BFA;
+  transform: translateX(5px);
 }
 
 /* Floating Gradient Circles */
@@ -2610,44 +2694,65 @@ background: transparent;  filter: blur(110px);
     top: 10px;
     width: calc(100% - 20px);
     height: auto;
-    min-height: 60px;
-    padding: 0.75rem 1rem;
-    border-radius: 50px;
+    min-height: 70px;
+    padding: 1rem 1.25rem;
+    border-radius: 30px;
   }
 
   .header-content {
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
   }
 
   .logo-brand {
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .brand-logo {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
 
   .brand-name {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .header-nav {
     display: none;
   }
 
-  .header-downloads {
-    margin-left: auto;
+  .header-right {
+    gap: 0.5rem;
   }
 
-  .download-stores {
-    height: 120px;
+  .header-downloads {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Show download button in mobile menu */
+  .mobile-menu::after {
+    content: '';
+    display: block;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(167, 139, 250, 0.2);
   }
 
   /* Hero Section */
   .hero {
-    padding: 100px 1.5rem 3rem;
+    padding: 120px 1.5rem 3rem;
   }
 
   .hero-content {
@@ -2661,7 +2766,7 @@ background: transparent;  filter: blur(110px);
   }
 
   .hero-text h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
     line-height: 1.2;
   }
 
@@ -2672,12 +2777,29 @@ background: transparent;  filter: blur(110px);
 
   .hero-image {
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
+    margin: 0 auto;
   }
 
   .hero-phone {
     width: 100%;
     height: auto;
+    max-width: 100%;
+  }
+
+  /* All Images Responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .feature-phone-img,
+  .hero-phone,
+  .benefit-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   /* Features Section */
@@ -2694,6 +2816,78 @@ background: transparent;  filter: blur(110px);
     margin-bottom: 2rem;
   }
 
+  /* Key Features Section - Mobile */
+  .features {
+    padding: 3rem 1rem;
+  }
+
+  .features h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .features-interactive {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .features-list {
+    width: 100%;
+    gap: 1rem;
+    order: 2;
+  }
+
+  .feature-item {
+    padding: 1.25rem;
+    gap: 1rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .feature-icon-small {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  .feature-icon-small svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .feature-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .features-image {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+    order: 1;
+    padding: 0 1rem;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .feature-phone-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 30px;
+    transform: none;
+    box-shadow: 0 20px 60px rgba(167, 139, 250, 0.25);
+  }
+
+  /* Old Features Showcase - if exists */
   .features-showcase {
     flex-direction: column;
     gap: 2rem;
@@ -2702,13 +2896,6 @@ background: transparent;  filter: blur(110px);
   .features-tabs {
     width: 100%;
     order: 1;
-  }
-
-  .features-image {
-    width: 100%;
-    max-width: 300px;
-    order: 2;
-    margin: 0 auto;
   }
 
   .feature-tab {
@@ -2726,11 +2913,6 @@ background: transparent;  filter: blur(110px);
 
   .feature-tab p {
     font-size: 0.9rem;
-  }
-
-  .feature-phone-img {
-    max-width: 100%;
-    height: auto;
   }
 
   /* KPI Analysis Section */
@@ -2869,7 +3051,7 @@ background: transparent;  filter: blur(110px);
   }
 
   .legal-content {
-    padding: 100px 1rem 2rem;
+    padding: 120px 1rem 2rem;
   }
 
   .legal-container {
@@ -2909,16 +3091,17 @@ background: transparent;  filter: blur(110px);
   /* Header */
   .main-header {
     width: calc(100% - 10px);
-    padding: 0.5rem 0.75rem;
+    padding: 0.75rem 1rem;
+    min-height: 65px;
   }
 
   .brand-logo {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
   }
 
   .brand-name {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .download-stores {
@@ -2927,23 +3110,85 @@ background: transparent;  filter: blur(110px);
 
   /* Hero */
   .hero {
-    padding: 80px 1rem 2rem;
+    padding: 100px 1rem 2rem;
   }
 
   .hero-text h1 {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
 
   .hero-text p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .hero-image {
-    max-width: 280px;
+    max-width: 300px;
+  }
+
+  /* All Images Fully Responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .feature-phone-img,
+  .hero-phone,
+  .benefit-image,
+  .kpi-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Key Features - Small Mobile */
+  .features {
+    padding: 2rem 0.75rem;
+  }
+
+  .features h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .features-interactive {
+    gap: 1.5rem;
+  }
+
+  .features-image {
+    padding: 0 0.5rem;
+  }
+
+  .feature-phone-img {
+    max-width: 250px;
+    border-radius: 25px;
+  }
+
+  .feature-item {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .feature-icon-small {
+    width: 45px;
+    height: 45px;
+  }
+
+  .feature-icon-small svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .feature-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-content p {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   /* Sections */
-  .features,
   .kpi-analysis,
   .benefits {
     padding: 2rem 1rem;
@@ -3071,7 +3316,7 @@ background: transparent;  filter: blur(110px);
 
   /* Legal Pages */
   .legal-content {
-    padding: 80px 0.5rem 1.5rem;
+    padding: 100px 0.5rem 1.5rem;
   }
 
   .legal-container {

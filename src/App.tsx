@@ -14,11 +14,14 @@ import {
   Camera,
   BarChart3,
   Clock,
-  ShoppingBag
+  ShoppingBag,
+  Menu,
+  X
 } from 'lucide-react'
 
 export default function App() {
   const [activeFeature, setActiveFeature] = useState('scan')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const featureImages: { [key: string]: string } = {
     scan: '/SkinScan.PNG',
@@ -33,8 +36,10 @@ export default function App() {
       <header className="main-header">
         <div className="header-content">
           <div className="logo-brand">
-            <img src="/logo skinova.jpg" alt="Skinova" className="brand-logo" />
-            <span className="brand-name">SKINOVA</span>
+            <a href="#home">
+              <img src="/logo skinova.jpg" alt="Skinova" className="brand-logo" />
+              <span className="brand-name">SKINOVA</span>
+            </a>
           </div>
           <nav className="header-nav">
             <a href="#home">Home</a>
@@ -42,10 +47,29 @@ export default function App() {
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
           </nav>
-          <div className="header-downloads">
-            <img src="/download app store.png" alt="Download App" className="download-stores" />
+          <div className="header-right">
+            <div className="header-downloads">
+              <img src="/download app store.png" alt="Download App" className="download-stores" />
+            </div>
+            <button 
+              className="mobile-menu-toggle"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="mobile-menu">
+            <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <a href="#features" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          </div>
+        )}
       </header>
 
       <div className="landing-page">

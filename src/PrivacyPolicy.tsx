@@ -1,7 +1,8 @@
-import React from 'react'
-import { Linkedin, Instagram } from 'lucide-react'
+import React, { useState } from 'react'
+import { Linkedin, Instagram, Menu, X } from 'lucide-react'
 
 export default function PrivacyPolicy() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   return (
     <div className="legal-page">
       <header className="main-header">
@@ -18,10 +19,29 @@ export default function PrivacyPolicy() {
             <a href="/#about">About</a>
             <a href="/#contact">Contact</a>
           </nav>
-          <div className="header-downloads">
-            <img src="/download app store.png" alt="Download App" className="download-stores" />
+          <div className="header-right">
+            <div className="header-downloads">
+              <img src="/download app store.png" alt="Download App" className="download-stores" />
+            </div>
+            <button 
+              className="mobile-menu-toggle"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="mobile-menu">
+            <a href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <a href="/#features" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
+            <a href="/#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          </div>
+        )}
       </header>
 
       <div className="legal-content">
