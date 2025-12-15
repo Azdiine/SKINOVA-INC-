@@ -18,6 +18,7 @@ import {
   Menu,
   X
 } from 'lucide-react'
+import LuxuryBackground from './components/LuxuryBackground'
 
 export default function App() {
   const [activeFeature, setActiveFeature] = useState('scan')
@@ -31,7 +32,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <LuxuryBackground>
       {/* Header */}
       <header className="main-header">
         <div className="header-content">
@@ -45,7 +46,7 @@ export default function App() {
             <a href="#home">Home</a>
             <a href="#features">Features</a>
             <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="/contact">Contact</a>
           </nav>
           <div className="header-right">
             <div className="header-downloads">
@@ -67,7 +68,7 @@ export default function App() {
             <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
             <a href="#features" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            <a href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
           </div>
         )}
       </header>
@@ -376,33 +377,46 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <div className="logo">
-              <div className="logo-icon">✨</div>
-              <span className="logo-text">SKINOVA</span>
+        <div className="footer-main">
+          <div className="footer-brand-section">
+            <div className="footer-logo">
+              <img src="/logo skinova.jpg" alt="SKINOVA" className="footer-logo-img" />
+              <span className="footer-brand-name">SKINOVA</span>
             </div>
-            <p>Your beauty partner</p>
-          </div>
-          <div className="footer-links">
-            <div className="footer-column">
-              <h4>Product</h4>
-              <a href="#features">Features</a>
-            </div>
-            <div className="footer-column">
-              <h4>Support</h4>
-              <a href="#">FAQ</a>
+            <p className="footer-download-text">Download SKINOVA</p>
+            <div className="footer-app-buttons">
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="/download app store.png" alt="Download App" className="footer-store-badge" />
+              </a>
             </div>
           </div>
+
+          <div className="footer-links-center">
+            <div className="footer-links-section">
+              <div className="footer-column">
+                <h4>Legal</h4>
+                <a href="/privacy-policy">Privacy Policy</a>
+                <a href="/terms-of-use">Terms of use</a>
+              </div>
+
+              <div className="footer-column">
+                <h4>Company</h4>
+                <a href="/contact">Contact</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-empty-section"></div>
         </div>
+
         <div className="footer-bottom">
-          <p>&copy; 2025 SKINOVA. All rights reserved.</p>
-          <div className="social-icons">
+          <p className="footer-copyright">© Copyright 2025, All rights reserved</p>
+          <div className="footer-social">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
-              <Linkedin style={{ width: '20px', height: '20px' }} />
+              <Linkedin size={20} />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
-              <Instagram style={{ width: '20px', height: '20px' }} />
+              <Instagram size={20} />
             </a>
             <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -411,13 +425,8 @@ export default function App() {
             </a>
           </div>
         </div>
-        <div className="footer-legal-links">
-          <a href="/privacy-policy" className="legal-link">Privacy Policy</a>
-          <span className="legal-separator">•</span>
-          <a href="/terms-of-use" className="legal-link">Terms of Use</a>
-        </div>
       </footer>
     </div>
-    </>
+    </LuxuryBackground>
   )
 }
