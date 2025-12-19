@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser'
 export default function Contact() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     subject: '',
     message: ''
@@ -23,9 +24,8 @@ export default function Contact() {
         'service_skinova_gmail',  // Service ID
         'template_pb2u3ce',        // Template ID
         {
-          user_email: formData.email,
-          reply_to: formData.email,
-          from_name: formData.email,
+          name: formData.name,
+          email: formData.email,
           subject: formData.subject,
           message: formData.message
         },
@@ -33,7 +33,7 @@ export default function Contact() {
       )
       
       setSendStatus('success')
-      setFormData({ email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', subject: '', message: '' })
       setTimeout(() => setSendStatus('idle'), 5000)
     } catch (error) {
       console.error('EmailJS Error:', error)
@@ -99,6 +99,19 @@ export default function Contact() {
           <p className="contact-subtitle">Get in touch with our team for media inquiries, support, and questions.</p>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Full Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="John Doe"
+                required
+              />
+            </div>
+
             <div className="form-group">
               <label htmlFor="email">Email Address *</label>
               <input
