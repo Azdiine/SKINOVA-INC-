@@ -24,10 +24,12 @@ export default function Contact() {
         'service_skinova_gmail',  // Service ID
         'template_pb2u3ce',        // Template ID
         {
+          from_name: 'Skinova-contact',
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          reply_to: formData.email
         },
         'mvbvvKlb5TEj53Gas'        // Public Key
       )
