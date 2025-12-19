@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Linkedin, Instagram, Menu, X, Send } from 'lucide-react'
 import LuxuryBackground from './components/LuxuryBackground'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -9,11 +10,37 @@ export default function Contact() {
     subject: '',
     message: ''
   })
+  const [isSending, setIsSending] = useState(false)
+  const [sendStatus, setSendStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setIsSending(true)
+    setSendStatus('idle')
+
+    try {
+      await emailjs.send(
+        'service_skinova_gmail',  // Service ID
+        'template_pb2u3ce',        // Template ID
+        {
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'skinovainc@gmail.com'
+        },
+        'mvbvvKlb5TEj53Gas'        // Public Key
+      )
+      
+      setSendStatus('success')
+      setFormData({ email: '', subject: '', message: '' })
+      setTimeout(() => setSendStatus('idle'), 5000)
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setSendStatus('error')
+      setTimeout(() => setSendStatus('idle'), 5000)
+    } finally {
+      setIsSending(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -110,10 +137,22 @@ export default function Contact() {
               />
             </div>
 
-            <button type="submit" className="submit-button">
+            <button type="submit" className="submit-button" disabled={isSending}>
               <Send size={20} />
-              Send Inquiry
+              {isSending ? 'Sending...' : 'Send Inquiry'}
             </button>
+
+            {sendStatus === 'success' && (
+              <div className="form-message success-message">
+                ✓ Message sent successfully! We'll get back to you soon.
+              </div>
+            )}
+
+            {sendStatus === 'error' && (
+              <div className="form-message error-message">
+                ✗ Failed to send message. Please try again or contact us directly.
+              </div>
+            )}
           </form>
 
           <div className="contact-info">
