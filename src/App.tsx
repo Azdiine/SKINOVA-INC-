@@ -45,7 +45,7 @@ export default function App() {
           <nav className="header-nav">
             <a href="#home">Home</a>
             <a href="#features">Features</a>
-            <a href="#about">About</a>
+            <a href="/about">About</a>
             <a href="/contact">Contact</a>
           </nav>
           <div className="header-right">
@@ -67,7 +67,7 @@ export default function App() {
           <div className="mobile-menu">
             <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
             <a href="#features" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
-            <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="/about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
             <a href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
           </div>
         )}
@@ -333,7 +333,7 @@ export default function App() {
               </svg>
             </div>
             <h3>Advanced AI</h3>
-            <p>Machine learning algorithms for precise analysis</p>
+            <p>AI powered for precise analysis</p>
           </div>
           <div className="benefit-card">
             <div className="benefit-icon security-icon-benefit">
