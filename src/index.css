@@ -2492,7 +2492,7 @@ background: transparent;  filter: blur(110px);
 /* Footer */
 .footer {
   background: #FFFFFF;
-  padding: 2rem 5% 1.5rem;
+  padding: 3rem 5% 2rem;
   backdrop-filter: blur(10px);
 }
 
@@ -2509,25 +2509,23 @@ background: transparent;  filter: blur(110px);
 }
 
 .footer-brand-section {
-  min-width: 280px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-logo {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
 .footer-logo-img {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border-radius: 12px;
   object-fit: cover;
-  transform: translateX(-10px) translateY(190px);
 }
 
 .footer-brand-name {
@@ -2537,31 +2535,28 @@ background: transparent;  filter: blur(110px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transform: translateX(-20px) translateY(190px);
-  
 }
 
 .footer-download-text {
   color: #555;
   font-size: 0.95rem;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-  transform: translateX(5px)  translateY(180px);
-   
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .footer-app-buttons {
   display: flex;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-store-badge {
-  height: 200px;
+  height: 180px;
   width: auto;
   display: block;
   cursor: pointer;
-  transform: translateX(-60px) translateY(100px);
+  transition: opacity 0.3s ease;
 }
 
 .footer-store-badge:hover {
@@ -2572,14 +2567,12 @@ background: transparent;  filter: blur(110px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  transform: translateY(50px);
 }
 
 .footer-links-section {
   display: flex;
   gap: 4rem;
   flex-wrap: wrap;
-  transform: translateY(150px);
 }
 
 .footer-empty-section {
@@ -2594,7 +2587,7 @@ background: transparent;  filter: blur(110px);
 
 .footer-column h4 {
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   color: #1F2937;
   font-size: 1rem;
 }
@@ -2615,9 +2608,9 @@ background: transparent;  filter: blur(110px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1.25rem;
+  padding-top: 1.5rem;
   margin-top: 2rem;
-  border-top: 2px solid #1F2937;
+  border-top: 2px solid rgba(167, 139, 250, 0.2);
   max-width: 1200px;
   margin: 2rem auto 0;
 }
@@ -2961,7 +2954,12 @@ background: transparent;  filter: blur(110px);
   .main-header {
     width: calc(100% - 40px);
     padding: 0.75rem 1.5rem;
-    height: 70px;
+    height: auto;
+    min-height: 70px;
+  }
+
+  .header-content {
+    gap: 1rem;
   }
 
   .brand-name {
@@ -2983,6 +2981,14 @@ background: transparent;  filter: blur(110px);
 
   .download-stores {
     height: 160px;
+  }
+
+  .header-downloads {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
   }
 
   /* Hero Section */
@@ -3035,16 +3041,20 @@ background: transparent;  filter: blur(110px);
   }
 
   .logo-brand {
-    gap: 0.75rem;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
   }
 
   .brand-logo {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
   }
 
   .brand-name {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    white-space: nowrap;
   }
 
   .header-nav {
@@ -3053,6 +3063,7 @@ background: transparent;  filter: blur(110px);
 
   .header-right {
     gap: 0.5rem;
+    flex-shrink: 0;
   }
 
   .header-downloads {
@@ -3063,6 +3074,8 @@ background: transparent;  filter: blur(110px);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 
   .mobile-menu {
@@ -3401,6 +3414,7 @@ background: transparent;  filter: blur(110px);
     grid-template-columns: 1fr;
     gap: 2.5rem;
     text-align: center;
+    padding: 1.5rem;
   }
 
   .footer-brand-section {
@@ -3409,10 +3423,31 @@ background: transparent;  filter: blur(110px);
 
   .footer-logo {
     justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-logo-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .footer-brand-name {
+    font-size: 1.3rem;
+  }
+
+  .footer-download-text {
+    font-size: 0.9rem;
+    text-align: center;
   }
 
   .footer-app-buttons {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-store-badge {
+    height: 140px;
   }
 
   .footer-links-center {
@@ -3437,6 +3472,7 @@ background: transparent;  filter: blur(110px);
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
+    padding-top: 1.5rem;
   }
 
   .footer-social {
@@ -3531,16 +3567,30 @@ background: transparent;  filter: blur(110px);
   .main-header {
     width: calc(100% - 10px);
     padding: 0.75rem 1rem;
-    min-height: 65px;
+    min-height: 60px;
+    top: 5px;
+  }
+
+  .header-content {
+    gap: 0.5rem;
+  }
+
+  .logo-brand {
+    gap: 0.4rem;
   }
 
   .brand-logo {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 
   .brand-name {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .mobile-menu-toggle {
+    width: 35px;
+    height: 35px;
   }
 
   .download-stores {
@@ -3765,28 +3815,42 @@ background: transparent;  filter: blur(110px);
     height: 40px;
   }
 
+  .footer-logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
   .footer-brand-name {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 
   .footer-download-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .footer-store-badge {
-    height: 42px;
+    height: 120px;
   }
 
   .footer-column h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .footer-column a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .footer-bottom p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .footer-social {
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 32px;
+    height: 32px;
   }
 
   /* Legal Pages */

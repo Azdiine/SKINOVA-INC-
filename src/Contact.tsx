@@ -55,8 +55,8 @@ export default function Contact() {
 
   return (
     <LuxuryBackground>
-      <div className="legal-page">
-        <header className="main-header">
+      {/* Header */}
+      <header className="main-header">
         <div className="header-content">
           <div className="logo-brand">
             <a href="/">
@@ -95,6 +95,7 @@ export default function Contact() {
         )}
       </header>
 
+      <div className="legal-page">
       <div className="legal-content">
         <div className="contact-container">
           <h1>Contact Us</h1>
